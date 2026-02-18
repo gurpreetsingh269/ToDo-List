@@ -1,6 +1,7 @@
 const addTodoBtn = document.getElementById('addTodoBtn');
 const inputTag = document.getElementById('todoInput');
 const todoListUl = document.getElementById('todoList');
+const remaining=document.getElementById('remaining-count');
 // const todoCheckbox=document.getElementsByClassName('todo-checkbox');
 let toDoText;// to get text from the input field by the user
 let toDos = []
@@ -24,13 +25,17 @@ const populateTodoList = () => {
 
     deleteBtn.forEach((element) => {
         element.addEventListener('click', (e) => {
+            const confirmation=confirm("Are you sure you want to delete this todo?")
+            if(confirmation==true){
             console.log(e.target.parentNode.id)
             toDos = toDos.filter((todo) => {
                 return ("todo-" + todo.id) !== (e.target.parentNode.id);
             })
             localStorage.setItem('todos', JSON.stringify(toDos));
             populateTodoList();
-        })
+        }
+    })
+    
     })
     const todoCheckbox = document.querySelectorAll('.todo-checkbox');
     todoCheckbox.forEach((element) => {
@@ -46,6 +51,7 @@ const populateTodoList = () => {
                         return todo
                     }
                 })
+                remaining.innerHTML=toDos.filter((item)=>{return !item.isCompleted}).length;
                 localStorage.setItem('todos', JSON.stringify(toDos));
             }
             else {
@@ -59,6 +65,7 @@ const populateTodoList = () => {
                         return todo
                     }
                 })
+                remaining.innerHTML=toDos.filter((item)=>{return !item.isCompleted}).length;
                 localStorage.setItem('todos', JSON.stringify(toDos));
             }
         })
