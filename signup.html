@@ -1,0 +1,33 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>Signup</h2>
+
+      <input type="text" id="name" class="auth-input" placeholder="Enter Name">
+      <input type="email" id="email" class="auth-input" placeholder="Enter Email">
+      <input type="password" id="password" class="auth-input" placeholder="Enter Password">
+
+      <button onclick="signup()" class="auth-btn">Signup</button>
+
+      <div class="auth-link">
+        <p>Already have account? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const userId = localStorage.getItem("userId");
+
+  if (userId) {
+      window.location.href = "index.html";
+  }
+  </script>
+  </body>
+  </html>
